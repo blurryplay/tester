@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Cards</title>
+<style>
+  /* Style for the card */
+  .card {
+    width: 200px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: none; /* Initially hide the card */
+  }
+  
+  /* Colors for the cards */
+  .red { background-color: red; }
+  .blue { background-color: blue; }
+  .green { background-color: green; }
+</style>
+</head>
+<body>
+
+<!-- List of links -->
+<ul>
+  <li><a href="#" class="color-link" data-color="red">Red</a></li>
+  <li><a href="#" class="color-link" data-color="blue">Blue</a></li>
+  <li><a href="#" class="color-link" data-color="green">Green</a></li>
+</ul>
+
+<!-- Card container -->
+<div id="card-container"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get card container
+  var cardContainer = document.getElementById('card-container');
+
+  // Get all color links
+  var colorLinks = document.querySelectorAll('.color-link');
+
+  // Add click event listener to each color link
+  colorLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Prevent default link behavior
+
+      // Get color from data-color attribute
+      var color = this.getAttribute('data-color');
+
+      // Create card element
+      var card = document.createElement('div');
+      card.classList.add('card', color); // Add color class to the card
+
+      // Add content to the card
+      card.textContent = color.charAt(0).toUpperCase() + color.slice(1);
+
+      // Append card to the card container
+      cardContainer.appendChild(card);
+
+      // Show the card
+      card.style.display = 'block';
+    });
+  });
+});
+</script>
+
+</body>
+</html>
